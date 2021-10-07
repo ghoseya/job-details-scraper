@@ -2,7 +2,7 @@ import re
 from UrlParsing import UrlError
 
 
-def generate_link():
+def generateLink():
 
     # generating our own link for a specific job (first page)
     l1 = "https://www.indeed.com/jobs?q="
