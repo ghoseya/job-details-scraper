@@ -39,7 +39,10 @@ def dataExtraction(url: str):
     job_summary = parsed_data.find('div', attrs={'id': 'jobDescriptionText'}).text
     # Extracting DAYS
     job_days_div = parsed_data.find('div', attrs={'class': 'jobsearch-JobMetadataFooter'}).find_all('div')
+    job_days = "Few Hours Ago"
     for x in range(len(job_days_div)):
-        if job_days_div[x].find('a') is not None:
-            job_days = job_days_div[x-1].text.strip()
+        if ('days' in job_days_div[x].text.split()) and ('ago' in job_days_div[x].text.split()):
+            job_days = job_days_div[x].text.strip()
+            break
+        
     return job_title, institution_name, job_location, job_type, job_salary, job_summary, job_days
