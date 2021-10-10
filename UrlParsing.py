@@ -26,7 +26,7 @@ class UrlError:
         else:
             return None, var, False
 
-    def pharser(self) -> str:
+    def parser(self) -> str:
         read, status, error = self.urlopen()
         if error:
             return bs4.BeautifulSoup(read.text, 'lxml')
