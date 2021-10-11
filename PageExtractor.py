@@ -1,5 +1,6 @@
 from UrlParsing import UrlError
 from datetime import datetime, timedelta
+from re import search, IGNORECASE
 
 
 def dataExtraction(url: str) -> list:
@@ -9,6 +10,15 @@ def dataExtraction(url: str) -> list:
     # Extracting TITLE
     job_title = parsed_data.find(
         'h1', attrs={'class': 'jobsearch-JobInfoHeader-title'}).text.strip()
+    # Key Data in Title
+    data_check = search('data', job_title, flags=IGNORECASE)
+    if data_check is not None:
+        if data_check.group().lower() == 'data':
+            key_data = "Yes"
+        else:
+            key_data = "No"
+    else:
+        key_data = "No"
     # Extracting INSTITUTION NAME
     institution_name = parsed_data.find(
         'div', attrs={'class': 'jobsearch-InlineCompanyRating'}).find('div').find('a')
@@ -54,9 +64,14 @@ def dataExtraction(url: str) -> list:
         if ('days' in job_days_div[x].text.split() or 'day' in job_days_div[x].text.split()) and 'ago' in job_days_div[x].text.split():
             job_days = job_days_div[x].text.strip()
             try:
-                job_days = (datetime.today() - timedelta(int(job_days.split()[0]))-1).strftime('%d-%m-%Y')
+                job_days = (
+                    datetime.today() - timedelta(int(job_days.split()[0]))-1).strftime('%d-%m-%Y')
             except:
                 job_days = "30+ days ago"
             break
 
-    return job_title, institution_name, job_location, job_type, job_salary, job_summary, job_days
+    return [job_title, institution_name, job_location, job_type, job_salary, job_summary, job_days, key_data]
+
+
+def field_entities() -> list:
+    return ["Job Title", "Institution Name", "Location", "Job Type", "Salary", "Summary", "Posted On", "Key Term Data"]
