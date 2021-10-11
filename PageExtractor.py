@@ -64,8 +64,9 @@ def dataExtraction(url: str) -> list:
         if ('days' in job_days_div[x].text.split() or 'day' in job_days_div[x].text.split()) and 'ago' in job_days_div[x].text.split():
             job_days = job_days_div[x].text.strip()
             try:
-                job_days = (
-                    datetime.today() - timedelta(int(job_days.split()[0]))-1).strftime('%d-%m-%Y')
+                past_date = int(job_days.split()[0]) - 1
+                job_days = datetime.today() - timedelta(past_date)
+                job_days = job_days.strftime('%d-%m-%Y')
             except:
                 job_days = "30+ days ago"
             break
