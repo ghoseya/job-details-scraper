@@ -8,12 +8,12 @@ import pickle
 
 
 def main():
-    file_name = "Data_Research_Job.xlsx"
+    file_name = "Data_Librarian.xlsx"
     with open("job_urls.txt", "rb") as fp:
         primary_gen_link = pickle.load(fp)
     if os.path.exists(file_name):
         read_data = pd.read_excel(file_name)
-        read_data_jobs = read_data["url"].tolist()
+        read_data_jobs = read_data["jobs_url"].tolist()
         workbook = openpyxl.load_workbook(file_name)
         sheet = workbook.active
     else:
