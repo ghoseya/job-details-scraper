@@ -1,4 +1,4 @@
-from PageExtractor import dataExtraction
+from PageExtractor import dataExtraction,field_entities
 import openpyxl
 import os.path
 import time
@@ -8,7 +8,7 @@ import pickle
 
 
 def main():
-    file_name = input("Enter filename: ")
+    file_name = "Data_Research_Job.xlsx"
     with open("job_urls.txt", "rb") as fp:
         primary_gen_link = pickle.load(fp)
     if os.path.exists(file_name):
@@ -16,20 +16,13 @@ def main():
         read_data_jobs = read_data["url"].tolist()
         workbook = openpyxl.load_workbook(file_name)
         sheet = workbook.active
-
+        sheet.append(field_entities+["jobs_url"])
+        workbook.save(file_name)
     else:
         read_data_jobs = []
         workbook = openpyxl.Workbook()
         workbook.save(filename=file_name)
         sheet = workbook.active
-        sheet['A1'].value = "job_title"
-        sheet['B1'].value = "institution_name"
-        sheet['C1'].value = "job_location"
-        sheet['D1'].value = "job_type"
-        sheet['E1'].value = "job_salary"
-        sheet['F1'].value = "job_summary"
-        sheet['G1'].value = "job_days"
-        sheet['H1'].value = "url"
         workbook.save(file_name)
     pd.read_excel(file_name)
     for jobs in primary_gen_link:
@@ -42,9 +35,9 @@ def main():
         else:
             params_data = dataExtraction(jobs)
             sheet.append(params_data + [jobs])
-            workbook.save('Data_Management_Librarian.xlsx')
+            workbook.save(file_name)
             time.sleep(2)
-    workbook.save('Data_Management_Librarian.xlsx')
+        workbook.save(file_name)
 
 
 if __name__ == "__main__":
