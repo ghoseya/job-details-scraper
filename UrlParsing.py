@@ -10,7 +10,7 @@ class UrlError:
     def __init__(self, url: str) -> None:
         self.url = url
 
-    def urlopen(self) -> bool:
+    def urlopen(self): # Returns 3 values
         try:
             var = "NoError"
             read = requests.get(self.url)
@@ -22,7 +22,7 @@ class UrlError:
         except ConnectionError as e:
             var = "ConnectionError"
         if var == "NoError":
-            return read, read.status_code, True
+            return read, read.status_code, True 
         else:
             return None, var, False
 
