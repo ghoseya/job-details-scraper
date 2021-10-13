@@ -1,22 +1,18 @@
-import sys
 from PageExtractor import dataExtraction, field_entities
 import openpyxl
-import os.path
-# from os.path import exists
-import time
-# from time import sleep
-import pandas as pd
-# from pandas import read_excel
-import pickle
+from os.path import exists
+from sys import exit
+from time import sleep
+from pandas import read_excel
+from pickle import load
 
 
 def main():
     file_name = "Data_Librarian.xlsx"
     with open("job_urls.txt", "rb") as fp:
-        primary_gen_link = pickle.load(fp)
-    if os.path.exists(file_name): # if exists(file_name):
-        read_data = pd.read_excel(file_name)
-        # read_data = read_excel(file_name)
+        primary_gen_link = list(set(load(fp))) # "set" to have unique elements & "list" to have ordered continuous data 
+    if exists(file_name):
+        read_data = read_excel(file_name)
         read_data_jobs = read_data["jobs_url"].tolist()
         workbook = openpyxl.load_workbook(file_name)
         sheet = workbook.active
@@ -30,6 +26,7 @@ def main():
         sheet.append(temp_list)
         workbook.save(file_name)
 
+
     for jobs in primary_gen_link:
         print(jobs + " - Processing")
 
@@ -40,20 +37,15 @@ def main():
             sheet.append(params_data + [jobs])
             workbook.save(file_name)
             print(jobs + " - Completed")
-            time.sleep(3)
-            # sleep(3)
+            sleep(3)
 
     print("program completed successfully")
-    sys.exit()
-
+    exit()
 
 if __name__ == "__main__":
-    main()
-    '''
     while True:
         try:
             main()
-        except:
+        except AttributeError as e:
             sleep(7)
             main()
-    '''
