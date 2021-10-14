@@ -15,6 +15,6 @@ for sheets in data_files:
     temp_sheet_read = read_excel("datasets/"+sheets)
     my_df = concat([my_df,temp_sheet_read])
 
-my_df.drop_duplicates(subset ="jobs_url",keep = False, inplace = True)
+my_df.drop_duplicates(subset ="jobs_url", inplace=True)
 summary = my_df["Summary"]
 summary.to_excel("summary.xlsx")
