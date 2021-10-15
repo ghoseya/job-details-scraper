@@ -1,4 +1,5 @@
 venv
 __pycache__
+geckodriver.log
 job_urls.txt
 datasets
