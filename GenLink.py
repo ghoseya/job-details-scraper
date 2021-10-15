@@ -1,5 +1,5 @@
 from re import sub
-from UrlParsing import UrlError
+from UrlParsing import UrlParseBs
 from urllib.parse import urlencode
 import pickle
 
@@ -16,7 +16,7 @@ def generateLink():
     link_list.append(start_link)
 
     # creating a object to parse the link
-    obj1 = UrlError(start_link)
+    obj1 = UrlParseBs(start_link)
     read = obj1.parser()
     count = read.find("div", attrs={"id": "searchCountPages"}).text.strip()
 
@@ -35,7 +35,7 @@ def generateLink():
     # Generating link for every jobs
     n = 1
     for j in link_list:
-        page_obj = UrlError(j)
+        page_obj = UrlParseBs(j)
         page_url_data = page_obj.parser()
         print("Page " + str(n) + " scraped")
         n = n + 1
