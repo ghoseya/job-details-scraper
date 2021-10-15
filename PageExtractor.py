@@ -1,11 +1,11 @@
-from UrlParsing import UrlError
+from UrlParsing import UrlParseBs
 from datetime import datetime, timedelta
 from re import search, IGNORECASE
 
 
 def dataExtraction(url: str) -> list:
     # Parsing
-    parsed_obj = UrlError(url)
+    parsed_obj = UrlParseBs(url)
     parsed_data = parsed_obj.parser()
     # Extracting TITLE
     job_title = parsed_data.find('h1', attrs={'class': 'jobsearch-JobInfoHeader-title'}).text.strip()

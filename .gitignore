@@ -1,4 +1,5 @@
-./venv
+venv
 __pycache__
-./job_urls.txt
+geckodriver.log
+job_urls.txt
 datasets
