@@ -1,8 +1,8 @@
 # job-details-scraper
 
 ### PageExtracter.py
-Regarding to this program,This file extract the content from the **passed data **.
-It returns the field like  **institution name**, **location **, **jobtype**, **salary**,**summary**,**posted on** ,** key term data**.
+Regarding to this program,It extract the content from the **parsed data **.
+It returns the field like **jobtitle** , **institution name** , **location ** , **jobtype** , **salary** ,**summary** ,**posted on** ,** key term data**.
  **
 ### MergeData.py
 The program just merges all `.xlsx` files in **datasets folder** and remove duplication of records and export it as `mergedata.xlsx`.
