@@ -35,6 +35,10 @@ Data = obj.parse()
 ```
  **The Whole application uses UrlParseBs**
 
+### GenLink.py 
+- It **navigates** through all the pages ,
+- It extracts all the **Url contents** from the page ,
+- It dumps the **Url** using **Pickle** .
 
 ### PageExtracter.py
 Regarding to this program , It extracts the content from the **parsed data** .
