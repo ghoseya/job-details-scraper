@@ -43,7 +43,12 @@ Data = obj.parse()
 ### PageExtracter.py
 Regarding to this program , It extracts the content from the **parsed data** .
 It returns the field entities like **jobtitle** , **institution name** , **location** , **jobtype** , **salary** , **summary** , **posted on** , **key term data** .
+
+### main.py
+The main.py reads the **joburl.txt** .
+ Which contains all the url , Then using the **Extractor.py** the **main.py** extracts all the contents from the url and save it in **.xlsx file** .
  
+
 ### MergeData.py
 The program just merges all `.xlsx` files in **datasets folder** and remove duplication of records and export it as `mergedata.xlsx`.
 
