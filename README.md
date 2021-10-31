@@ -26,12 +26,14 @@ In This function first install the Driver . Incase of , The driver is  unable to
 . 
 Note - It can only works on **Firefox**
 
-###### Example
+#### Example
 
 ```python
 from UrlParsing import UrlParseSe
 obj = UrlParse(url)
 Data = obj.parse()
+```
+ **The Whole application uses UrlParseBs**
 
 
 ### PageExtracter.py
