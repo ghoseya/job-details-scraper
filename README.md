@@ -1,5 +1,41 @@
 # job-details-scraper
 
+### UrlParsing.Py
+#### UrlParseBs
+
+```python
+from UrlParsing import UrlparseBs
+obj = UrlParseBs(url)
+```
+This function first checks the url is existing or not . If it is exits , it can parse using UrlParse . Otherwise "Error while occuring with code "+status . 
+
+###### Example
+
+```python
+from UrlParsing import UrlParseBs
+obj = UrlParse(url)
+Data = obj.parse()
+```
+#### UrlParseSe
+
+```python
+from UrlParsing import UrlParseSe
+obj = UrlParseSe(url)
+```
+In This function first install the Driver . Incase of , The driver is  unable to install in system , then it sets the prebuild Driver in the system
+. 
+Note - It can only works on **Firefox**
+
+#### Example
+
+```python
+from UrlParsing import UrlParseSe
+obj = UrlParse(url)
+Data = obj.parse()
+```
+ **The Whole application uses UrlParseBs**
+
+
 ### PageExtracter.py
 Regarding to this program , It extracts the content from the **parsed data** .
 It returns the field entities like **jobtitle** , **institution name** , **location** , **jobtype** , **salary** , **summary** , **posted on** , **key term data** .
